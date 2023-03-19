@@ -12,17 +12,28 @@
 
   <body style="background-color:white;">
     <div id="mainDiv">
-      <!-- Use PHP to get all image files in the folder -->
-      <?php
-        $dir = "public/images/"; // Path to the folder containing images
-        $files = scandir($dir); // Get all files in the folder
-        foreach($files as $file) {
-          // Only display the image files (ignore . and ..)
-          if (in_array($file, array(".", ".."))) continue;
-          // Display the image
-          echo '<img src="'.$dir.$file.'" alt="'.$file.'">';
-        }
-      ?>
+      <script>
+    const folder = "public/images"; // Set the folder containing the images
+    const container = document.getElementById("image-container"); // Get the container for the images
+
+    // Load all images from the folder
+    fetch(folder)
+      .then(response => response.text())
+      .then(text => {
+        const parser = new DOMParser();
+        const html = parser.parseFromString(text, "text/html");
+        const images = html.querySelectorAll("img");
+
+        // Add each image to the container
+        images.forEach(image => {
+          const src = folder + "/" + image.getAttribute("src");
+          const img = document.createElement("img");
+          img.setAttribute("src", src);
+          container.appendChild(img);
+        });
+      })
+      .catch(error => console.error(error));
+  </script>
     </div>
     <h1>Hello world: Abhi</h1>
   </body>
