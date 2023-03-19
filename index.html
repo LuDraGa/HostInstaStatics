@@ -11,7 +11,19 @@
   </head>
 
   <body style="background-color:white;">
-    <div id="mainDiv"></div>
+    <div id="mainDiv">
+      <!-- Use PHP to get all image files in the folder -->
+      <?php
+        $dir = "public/images/"; // Path to the folder containing images
+        $files = scandir($dir); // Get all files in the folder
+        foreach($files as $file) {
+          // Only display the image files (ignore . and ..)
+          if (in_array($file, array(".", ".."))) continue;
+          // Display the image
+          echo '<img src="'.$dir.$file.'" alt="'.$file.'">';
+        }
+      ?>
+    </div>
     <h1>Hello world: Abhi</h1>
   </body>
 </html>
