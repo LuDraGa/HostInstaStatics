@@ -20,6 +20,76 @@
       <img src="public/images/layer-4.png" alt="BG"/>
       <img src="public/images/layer-5.png" alt="BG"/>
     </div>
+    <pre>
+    <code>
+      from PIL import Image, ImageDraw, ImageFont
+
+# Set the font properties
+# font_path = "C:\Users\pc\Projects\scripts\sabreen-font"
+font_path = "./sabreen-font/SabreenRegularDemo-Eamyz.ttf"
+font_size = 36
+font_color = (255, 255, 255)
+
+# Set the image properties
+image_width = 400
+image_height = 300
+image_background = (0, 0, 0)
+
+# Set the text to be aligned
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam blandit, justo et ultrices convallis, mi ligula fringilla velit, ac pharetra odio quam id sapien."
+
+# Create the image
+image = Image.new("RGB", (image_width, image_height), image_background)
+
+# Create a draw object
+draw = ImageDraw.Draw(image)
+
+# Set the font
+font = ImageFont.truetype(font_path, font_size)
+
+# Calculate the maximum width and height for the text
+max_width = image_width * 0.8
+max_height = image_height * 0.8
+
+# Split the text into words
+words = text.split()
+
+# Initialize the lines and current line variables
+lines = []
+current_line = ""
+
+# Loop through each word
+for word in words:
+    # If adding the word to the current line would exceed the maximum width, add the current line to the list of lines and start a new line
+    if font.getsize(current_line + " " + word)[0] > max_width:
+        lines.append(current_line.strip())
+        current_line = ""
+
+    # Add the word to the current line
+    current_line += " " + word
+
+# Add the last line to the list of lines
+lines.append(current_line.strip())
+
+# Calculate the starting y-coordinate for the text
+y = (image_height - font_size * len(lines)) // 2
+
+# Draw each line of text
+for line in lines:
+    # Calculate the starting x-coordinate for the text
+    x = (image_width - font.getsize(line)[0]) // 2
+
+    # Draw the text
+    draw.text((x, y), line, font=font, fill=font_color)
+
+    # Update the y-coordinate for the next line of text
+    y += font_size
+
+# Save the image
+image.save("output.png")
+display(image)
+    </code>
+  </pre>
     <h1>Hello world: Abhi</h1>
   </body>
 </html>
