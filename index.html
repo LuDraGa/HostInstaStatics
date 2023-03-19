@@ -12,28 +12,13 @@
 
   <body style="background-color:white;">
     <div id="mainDiv">
-      <script>
-    const folder = "public/images"; // Set the folder containing the images
-    const container = document.getElementById("image-container"); // Get the container for the images
-
-    // Load all images from the folder
-    fetch(folder)
-      .then(response => response.text())
-      .then(text => {
-        const parser = new DOMParser();
-        const html = parser.parseFromString(text, "text/html");
-        const images = html.querySelectorAll("img");
-
-        // Add each image to the container
-        images.forEach(image => {
-          const src = folder + "/" + image.getAttribute("src");
-          const img = document.createElement("img");
-          img.setAttribute("src", src);
-          container.appendChild(img);
-        });
-      })
-      .catch(error => console.error(error));
-  </script>
+      <img src="public/images/forestBg.png" alt="BG"/>
+      <img src="public/images/ground.png" alt="BG"/>
+      <img src="public/images/layer-1.png" alt="BG"/>
+      <img src="public/images/layer-2.png" alt="BG"/>
+      <img src="public/images/layer-3.png" alt="BG"/>
+      <img src="public/images/layer-4.png" alt="BG"/>
+      <img src="public/images/layer-5.png" alt="BG"/>
     </div>
     <h1>Hello world: Abhi</h1>
   </body>
