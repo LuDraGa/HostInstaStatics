@@ -1,0 +1,2 @@
+Blog post on pushing react app to github pages
+https://blog.logrocket.com/deploying-react-apps-github-pages/#:~:text=To%20deploy%20your%20React%20application%20to%20GitHub%20Pages%2C,Push%20your%20React%20app%20to%20your%20GitHub%20repository
